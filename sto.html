@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sayı Tahmin Oyunu</title>
+</head>
+<body>
+    <h1>Tahmin Oyunu</h1>
+    <p id="attemptsLabel">1. tahmini girin:</p>
+    <input type="number" id="giris">
+    <button onclick="checkGuess()">Tahmin Yap</button>
+    <hr>
+    <p id="result"></p>
+
+    <script>
+        var randomSayi = Math.floor(Math.random() * 100) + 1;
+        var attempts = 1;
+
+        function checkGuess() {
+            var Giris = parseInt(document.getElementById("giris").value);
+
+            if (Giris === randomSayi) {
+                document.getElementById("result").innerHTML = "Sayı " + attempts + ". denemede bulundu";
+                document.getElementById("giris").disabled = true;
+            } else if (Giris < randomSayi) {
+                document.getElementById("result").innerHTML = "Daha büyük bir sayı girin.";
+            } else {
+                document.getElementById("result").innerHTML = "Daha küçük bir sayı girin.";
+            }
+
+            attempts += 1;
+            document.getElementById("attemptsLabel").innerHTML = attempts + ". tahmini girin";
+
+            if (attempts > 7) {
+                document.getElementById("result").innerHTML = "Deneme hakkınız kalmadı. Kaybettiniz.";
+                document.getElementById("giris").disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>
